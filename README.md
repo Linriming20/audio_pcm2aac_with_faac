@@ -38,6 +38,8 @@ $ ./pcm2aac --input_pcmfile=./audio/test_44100_16_2.pcm --sample_rate=44100 --sa
 ```
 .
 ├── audio
+│   ├── out_44.1khz_2ch.aac
+│   ├── out_8khz_1ch.aac
 │   ├── test_44100_16_2.pcm
 │   └── test_8000_16_1.pcm
 ├── docs
