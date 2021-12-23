@@ -1,11 +1,28 @@
 
 ### 1. 编译
 
-本demo是使用的开源项目faac（[源码下载地址](http://faac.sourceforge.net/)）将PCM数据编码成aac音频文件。由于库文件是在x86_64架构的主机上面编译的，所以仅支持该环境的编译运行，其他CPU架构的可以去访问上面的链接去下载编译。
+**a. 编译demo**
+
+本demo是使用的开源项目faac将PCM数据编码成aac音频文件。由于提供的.a静态库是在x86_64的机器上编译的，所以默认情况下仅支持该架构的主机上编译运行。
 
 ```bash
 $ make
 ```
+
+**b. 编译faac（可选）**
+
+如果想要在其他架构的CPU上编译运行，可以使用以下命令（脚本）编译`faac`[[下载地址]](http://faac.sourceforge.net/)得到相应的库文件进行替换：
+
+```bash
+#!/bin/bash
+
+tar xzf faac-1.29.9.2.tar.gz
+cd faac-1.29.9.2/
+./configure --prefix=$PWD/_install # --host=arm-linux-gnueabihf CC=arm-linux-gnueabihf-gcc
+make -j96
+make install
+```
+
 
 ### 2. 使用
 
@@ -35,7 +52,7 @@ $ ./pcm2aac --input_pcmfile=./audio/test_44100_16_2.pcm --sample_rate=44100 --sa
 
 ### 附录（demo目录架构）
 
-```
+```bash
 .
 ├── audio
 │   ├── out_44.1khz_2ch.aac
@@ -57,3 +74,4 @@ $ ./pcm2aac --input_pcmfile=./audio/test_44100_16_2.pcm --sample_rate=44100 --sa
 ├── Makefile
 └── README.md
 ```
+
